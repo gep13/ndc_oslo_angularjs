@@ -1,11 +1,10 @@
-<html>
-
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Default Page</title>
+    <title>Lab 1 Page</title>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/ng/styles.css">
 </head>
-
 <body class="container ng-cloak" data-ng-app>
 
     <nav class="navbar navbar-default navbar-inverse" role="navigation">
@@ -15,25 +14,6 @@
             </div>
         </div>
     </nav>
-
-    <div class="row" data-ng-controller="HelloController">
-        <button data-ng-click="showMessage()" class="btn btn-default">Show Message</button>
-        <div class="col-md-12">
-            {{ message }}
-            {{ message.length}}
-            <form data-ng-submit="saveMessage()">
-                <input type="text" data-ng-model="message" />
-                <input type="submit" value="Save" />
-            </form>
-        </div>
-
-
-        <div class="alert alert-info" ng-show="alert">
-            {{alert}}
-        </div>
-    </div>
-
-
 
     <div class="row" data-ng-controller="MoviesController">
         <div class="col-md-12">
@@ -50,14 +30,15 @@
                         <td>{{movie.title}}</td>
                         <td>{{movie.released}}</td>
                         <td>{{movie.length}}</td>
-                    </tr>
+                        <td><button data-ng-click="increaseLength(movie)" class="btn btn-default">+</button></td>
+                        <td><button data-ng-click="decreaseLength(movie)" class="btn btn-default">-</button></td>
+</tr>
                 </tbody>
             </table>
         </div>
     </div>
 
     <script src="/bower_components/angular/angular.js"></script>
-    <script src="scripts/HelloController.js"></script>
+    <script src="scripts/Lab1Controller.js" ></script>
 </body>
-
 </html>
