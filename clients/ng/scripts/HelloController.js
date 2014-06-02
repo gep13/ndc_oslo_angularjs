@@ -3,6 +3,10 @@
     $scope.showMessage = function () {
         $scope.message = "Hello, World!";
     }
+
+    $scope.saveMessage = function () {
+        $scope.alert = "Saved...";
+    }
 }
 
 

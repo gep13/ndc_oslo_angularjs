@@ -17,8 +17,22 @@
 
     <div class="row" data-ng-controller="HelloController">
         <button data-ng-click="showMessage()" class="btn btn-default">Show Message</button>
-        <div class="col-md-12">{{ message }}</div>
+        <div class="col-md-12">
+            {{ message }}
+            {{ message.length}}
+            <form data-ng-submit="saveMessage()">
+                <input type="text" data-ng-model="message" />
+                <input type="submit" value="Save" />
+            </form>
+        </div>
+
+
+        <div class="alert alert-info" ng-show="alert">
+            {{alert}}
+        </div>
     </div>
+
+
 
     <div class="row" data-ng-controller="MoviesController">
         <div class="col-md-12">
