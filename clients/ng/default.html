@@ -16,31 +16,40 @@
         </div>
     </nav>
 
-    <h1>{{ version }}</h1>
-
     <div class="row" data-ng-controller="MoviesController">
+
         {{ error }}
+
         <div class="col-md-12">
+
+            <input type="text" ng-model="movieSearch" />
+
+            <select ng-model="ordering">
+                <option value="+rating">Rating</option>
+                <option value="+year">Year</option>
+                <option value="-year">Year Descending</option>
+            </select>
+
             <table class="table table-condensed">
                 <thead>
                     <tr>
                         <th>Title</th>
                         <th>Year</th>
                         <th>Rating</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="movie in movies">
+                    <tr data-ng-repeat="movie in movies | filter:{title:movieSearch} | orderBy:ordering">
                         <td>{{movie.title}}</td>
                         <td>{{movie.year}}</td>
                         <td>{{movie.rating}}</td>
-                        <td><button data-ng-click="increase(movie)" class="btn btn-default">+</button></td>
-                        <td><button data-ng-click="decrease(movie)" class="btn btn-default">-</button></td>
+                        <td><button data-ng-click="edit(movie)" class="btn btn-default">Edit</button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <div data-ng-include="'partials/EditMovie.html'"></div>
     </div>
 
     <script src="/bower_components/angular/angular.js"></script>
@@ -48,6 +57,7 @@
     <script src="scripts/movieService.js"></script>
     <script src="scripts/HelloController.js"></script>
     <script src="scripts/MoviesController.js"></script>
+    <script src="scripts/allJson.js"></script>
 </body>
 
 </html>

@@ -4,6 +4,9 @@
         return {
             getAll: function () {
                 return $http.get("/api/movies");
+            },
+            save: function (movie) {
+                return $http.put("/api/movies", movie);
             }
         };
     };

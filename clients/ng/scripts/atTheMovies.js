@@ -2,6 +2,8 @@
     var module = angular.module("atTheMovies", []);
 
     module.run(function ($rootScope) {
-        $rootScope.version = "v1.0";
+        $rootScope.appConfig = {
+            version: "v1.1"
+        };
     })
 }());
