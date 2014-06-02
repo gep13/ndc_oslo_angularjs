@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/ng/styles.css">
 </head>
 
-<body class="container">
+<body class="container" data-ng-app>
 
     <nav class="navbar navbar-default navbar-inverse" role="navigation">
         <div class="container-fluid">
@@ -15,11 +15,34 @@
         </div>
     </nav>
 
-    <div class="row">
-        <div class="col-md-12">This is where we start...</div>
+    <div class="row" data-ng-controller="HelloController">
+        <button data-ng-click="showMessage()" class="btn btn-default">Show Message</button>
+        <div class="col-md-12">{{ message }}</div>
+    </div>
+
+    <div class="row" data-ng-controller="MoviesController">
+        <div class="col-md-12">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Released</th>
+                        <th>Length</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="movie in movies">
+                        <td>{{movie.title}}</td>
+                        <td>{{movie.released}}</td>
+                        <td>{{movie.length}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="scripts/HelloController.js"></script>
 </body>
 
 </html>
