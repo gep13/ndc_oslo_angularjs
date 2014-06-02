@@ -4,11 +4,12 @@
 
 <form name="movieEdit" data-ng-show="editableMovie">
 
-    <div ng-show="movieEdit.$invaild">Currently invalid</div>
+    <div data-ng-show="movieEdit.$invalid">Currently invalid</div>
 
-    <input type="text" required="" ng-model="editableMovie.title" />
-    <input type="number" required="" ng-model="editableMovie.year" />
-    <input type="number" ng-model="editableMovie.rating" />
-    <button class="btn btn-default" ng-disabled="movieEdit.$invalid" ng-click="save(editableMovie)">Save</button>
-    <button class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
+    <input type="text" required="" data-ng-model="editableMovie.title" />
+    <input type="number" required="" data-ng-model="editableMovie.year" />
+    <input type="number" data-ng-model="editableMovie.rating" />
+    <button class="btn btn-default" data-ng-disabled="movieEdit.$invalid" data-ng-click="save(editableMovie)">Save</button>
+    <button class="btn btn-default" data-ng-click="cancelEdit()">Cancel</button>
+
 </form>
