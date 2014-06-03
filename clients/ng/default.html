@@ -1,12 +1,11 @@
 <html>
 
 <head>
-    <title>Default Page</title>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/ng/styles.css">
 </head>
 
-<body class="container ng-cloak" data-ng-app="atTheMovies">
+<body class="container ng-cloak" ng-app="atTheMovies">
 
     <nav class="navbar navbar-default navbar-inverse" role="navigation">
         <div class="container-fluid">
@@ -16,48 +15,79 @@
         </div>
     </nav>
 
-    <div class="row" data-ng-controller="MoviesController">
-
-        {{ error }}
+    <div class="row" ng-controller="MoviesController">
 
         <div class="col-md-12">
 
-            <input type="text" ng-model="movieSearch" />
+            <!--<div class="alert alert-warning alert-dismissable">
+                <button class="close">x</button>
+                <div>this is a warning</div>
+            </div>
+
+            <div ng-repeat="alert in alerts">
+                <alert 
+                       type="{{alert.type}}" 
+                       reason="alert.reason" 
+                       close="closeAlert($index)">
+                    <div>{{alert.message}}</div>
+                </alert>
+            </div>
+
+            <br />-->
+
+            <button ng-click="changeAlert()">Change alert</button>
+
+            <input type="text" ng-model="searchTerm" />
 
             <select ng-model="ordering">
-                <option value="+rating">Rating</option>
+                <option value="-rating">Rating</option>
                 <option value="+year">Year</option>
-                <option value="-year">Year Descending</option>
+                <option value="-year">Year (descending)</option>
             </select>
 
-            <table class="table table-condensed">
+            <table class="table table-condensed" ng-show="movies">
                 <thead>
                     <tr>
                         <th>Title</th>
                         <th>Year</th>
                         <th>Rating</th>
+                        <th>Actions</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="movie in movies | filter:{title:movieSearch} | orderBy:ordering">
-                        <td>{{movie.title}}</td>
+                    <tr ng-repeat="movie in movies | filter:{ title:searchTerm} | orderBy:ordering">
+                        <td>
+                            {{movie.title}}
+                        </td>
                         <td>{{movie.year}}</td>
-                        <td>{{movie.rating}}</td>
-                        <td><button data-ng-click="edit(movie)" class="btn btn-default">Edit</button></td>
+                        <td><div rating rating-value="movie.rating" max="10" on-rating-selected="saveRatingToServer(movie, rating)"></div></td>
+                        <td>
+                            <button ng-click="increase(movie)">Rating +</button>
+                            <button ng-click="decrease(movie)">Rating -</button>
+                            <button ng-click="edit(movie)">Edit</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div data-ng-include="'partials/EditMovie.html'"></div>
+        <div ng-include="'views/edit.html'">
+
+        </div>
+
     </div>
 
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="scripts/atTheMovies.js"></script>
-    <script src="scripts/movieService.js"></script>
+
     <script src="scripts/HelloController.js"></script>
+    <script src="scripts/movieService.js"></script>
     <script src="scripts/MoviesController.js"></script>
     <script src="scripts/allJson.js"></script>
+    <script src="scripts/alert.js"></script>
+    <script src="scripts/rating.js"></script>
 </body>
 
 </html>
