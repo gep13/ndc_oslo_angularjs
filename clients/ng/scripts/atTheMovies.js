@@ -1,5 +1,5 @@
 ﻿(function () {
-    var module = angular.module("atTheMovies", ["ngRoute"]);
+    var module = angular.module("atTheMovies", ["ngRoute", "ngAnimate"]);
 
     module.config(function ($provide) {
         $provide.decorator("$exceptionHandler", function ($delegate) {
@@ -13,12 +13,18 @@
     module.config(function ($routeProvider) {
         $routeProvider
             .when("/list", {
-                templateUrl: "/views/list.html",
+                templateUrl: "views/list.html",
                 controller: "MovieListController"
             })
         .when("/edit/:id", {
-            templateUrl: "/views/edit.html",
-            controller: "MovieEditController"
+            templateUrl: "views/edit.html",
+            controller: "MovieEditController",
+            resolve: {
+                editableMovie: function (movieService, $route) {
+                    var id = $route.current.params.id;
+                    return movieService.getById(id);
+                }
+            }
         })
         .otherwise({
             redirectTo: "/list"

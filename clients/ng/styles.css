@@ -37,3 +37,10 @@ ul.rating {
 .rating .filled {
   color: #21568b;
 }
+
+.ng-enter {
+    -moz-animation: fadeInDown 2s;
+    -o-animation: fadeInDown 2s;
+    -webkit-animation: fadeInDown 2s;
+    animation: fadeInDown 2s;
+}

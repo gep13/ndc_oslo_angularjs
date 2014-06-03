@@ -2,6 +2,12 @@
     var movieService = function ($http) {
 
         return {
+            getById: function(id) {
+                return $http.get("/api/movies/" + id)
+                .then(function (response) {
+                    return response.data;
+                });
+            },
             getAll: function () {
                 return $http.get("/api/movies");
             },
