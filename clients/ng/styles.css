@@ -44,3 +44,11 @@ ul.rating {
     -webkit-animation: fadeInDown 2s;
     animation: fadeInDown 2s;
 }
+
+.ng-hide {
+    -moz-animation: fadeInDown 2s;
+    -o-animation: fadeInDown 2s;
+    -webkit-animation: fadeInDown 2s;
+    animation: fadeInDown 2s;
+    display: block !important;
+}
